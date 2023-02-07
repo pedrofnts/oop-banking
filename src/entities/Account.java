@@ -3,48 +3,45 @@ package entities;
 public class Account {
 
     private int number;
-    private String name;
+    private String holder;
     private double balance;
 
-    public Account() {
-
-    }
-    public Account(int number, String name, double balance) {
+    public Account(int number, String holder, double initialDeposit) {
         this.number = number;
-        this.name = name;
-        this.balance = balance;
+        this.holder = holder;
+        deposit(initialDeposit);
     }
 
-    public Account(int number, String name) {
+    public Account(int number, String holder) {
         this.number = number;
-        this.name = name;
+        this.holder = holder;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public String getName() {
-        return name;
+    public String getHolder() {
+        return holder;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHolder(String holder) {
+        this.holder = holder;
     }
 
     public double getBalance() {
         return balance;
     }
 
-    public void deposit(double balance) {
-        this.balance += balance;
+    public void deposit(double amount) {
+        this.balance += amount;
     }
 
-    public void withdraw(double balance) {
-        this.balance -= balance + 5.0;
+    public void withdraw(double amount) {
+        this.balance -= amount + 5.0;
     }
 
     public String toString() {
-        return "Account " + getNumber() + ", Holder: " + getName() + ", Balance: $ " + String.format("%.2f", getBalance());
+        return "Account " + getNumber() + ", Holder: " + getHolder() + ", Balance: $ " + String.format("%.2f", getBalance());
     }
 }

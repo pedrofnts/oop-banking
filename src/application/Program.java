@@ -13,33 +13,36 @@ public class Program {
 
         Scanner sc = new Scanner(System.in);
 
+        Account account;
+
         System.out.print("Enter account number: ");
         int number = sc.nextInt();
-        sc.nextLine();
         System.out.print("Enter account holder: ");
-        String name = sc.nextLine();
+        sc.nextLine();
+        String holder = sc.nextLine();
         System.out.print("Is there a initial deposit? (y/n)");
-        String validator = sc.nextLine();
-        double balance = 0;
+        char response = sc.next().charAt(0);
 
-        if (validator.equalsIgnoreCase("y")) {
+        if (response == 'y') {
             System.out.print("Enter initial deposit value: ");
-            balance = sc.nextDouble();
+            double initialDeposit = sc.nextDouble();
+            account = new Account(number, holder, initialDeposit);
+        } else {
+            account = new Account(number, holder);
         }
-        Account account = new Account(number, name, balance);
 
         System.out.println("Account data:");
-        System.out.println("Account " + account.toString());
+        System.out.println("Account " + account);
 
         System.out.print("Enter a deposit value: ");
-        balance = sc.nextDouble();
-        account.deposit(balance);
-        System.out.println("Updated account data: " + account.toString());
+        double amount = sc.nextDouble();
+        account.deposit(amount);
+        System.out.println("Updated account data: " + account);
 
         System.out.print("Enter a withdraw value: ");
-        balance = sc.nextDouble();
-        account.withdraw(balance);
-        System.out.println("Updated account data: " + account.toString());
+        amount = sc.nextDouble();
+        account.withdraw(amount);
+        System.out.println("Updated account data: " + account);
 
         sc.close();
 
